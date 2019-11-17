@@ -1,0 +1,19 @@
+<div class="p-grid p-align-center">
+    <div class="p-col-12 header-st">
+        <div class="p-grid p-align-center vertical-container">
+            <p-button class="p-col-2 p-md-4 menu-button" icon="pi pi-align-justify" (click)="toggleMenu()"></p-button>
+
+            <img id="im-izq" src="../../../assets/images/mi-tiendita.png" class="p-col-2 p-md-2 img-header"/>
+            <p class="p-col-7 p-md-8 titulo">Tiendas ¡El Baratón!</p>
+            <img src="../../../assets/images/mi-tiendita.png" class="p-col-2 p-md-2 img-header"/>
+        </div>
+    </div>
+
+    <div class="p-col-12 p-md-3 menu-content" [@openCloseMenu]="menuActivo ? true : false">
+        <p-panelMenu [model]="shopping.items"></p-panelMenu>
+    </div>
+
+    <div class="p-col-12 p-md-9">
+
+    </div>
+</div>
