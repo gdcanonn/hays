@@ -91,8 +91,8 @@ export class ShoppingService {
   seeAllProducts() {
     this.categorySelected = null;
 
-    if (!this.categorySelected && this.dispSelected == null && this.cantidadSelected == null) {
-      this.products = this.productsAll;      
+    if (!this.categorySelected && this.dispSelected == null && this.cantidadSelected == null && this.preciosSelected == null) {
+      this.products = this.productsAll;
     } else {
       this.products = this.productsAll.filter(p => this.getPredicate(p));
     }
