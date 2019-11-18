@@ -12,7 +12,7 @@
             </div>
 
             <div id="im-izq" class="p-col-2 p-md-2 txt-cent">
-                <img src="../../../assets/images/mi-tiendita.png" class="img-header" />
+                <img src="../../../assets/images/mi-tiendita.png" class="img-header" (click)="onSeeShop()"/>
             </div>
 
             <div class="p-col-5 p-md-6 txt-cent">
@@ -20,7 +20,7 @@
             </div>
 
             <div class="p-col-2 p-md-2 txt-cent">
-                <img src="../../../assets/images/mi-tiendita.png" class="img-header" />
+                <img src="../../../assets/images/mi-tiendita.png" class="img-header" (click)="onSeeShop()"/>
             </div>
 
             <div class="p-col-3 p-md-2 txt-cent cart-dv">
@@ -33,6 +33,8 @@
     <!-- Menu Izquierdo -->
     <div class="p-col-12 p-md-3 menu-content" [@openCloseMenu]="shopping.menuActivo ? true : false">
         <p-panelMenu [model]="shopping.items"></p-panelMenu>
+        <hr class="ui-widget-content" style="border-top:0">
+        <app-panel-filters></app-panel-filters>
     </div>
 
     <!-- Body - Productos de la tienda -->

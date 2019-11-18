@@ -24,7 +24,7 @@ export class PanelListProductsComponent implements OnInit {
   ) { }
 
   /**
-   * Método para mostrar u ocultar el menu cuando esta en modo celular
+   * Método para inicializar el componente
    */
   ngOnInit() {
     this.sortOptions = [

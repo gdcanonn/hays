@@ -22,6 +22,12 @@ export class ShoppingService {
   seeCart: boolean = false;
   totalCart: number = 0;
   editarCantidad: boolean = false;
+  categorySelected: Item;
+
+  // Filtros seleccionados  
+  dispSelected: boolean;
+  cantidadSelected: string;
+  preciosSelected: string;
 
   constructor(
     private messageService: MessageService
@@ -63,8 +69,10 @@ export class ShoppingService {
    * @param item El item al que se le ha realizado el evento
    */
   onClickItemMenu(item: Item) {
-    this.products = this.productsAll.filter(p => p.sublevel_id == item.id);
+    this.categorySelected = item;
     this.seeCart = false;
+
+    this.products = this.productsAll.filter(p => this.getPredicate(p));
   }
 
   /**
@@ -81,7 +89,13 @@ export class ShoppingService {
    * Métod para ver todos los productos
    */
   seeAllProducts() {
-    this.products = this.productsAll;
+    this.categorySelected = null;
+
+    if (!this.categorySelected && this.dispSelected == null && this.cantidadSelected == null) {
+      this.products = this.productsAll;      
+    } else {
+      this.products = this.productsAll.filter(p => this.getPredicate(p));
+    }
   }
 
   /**
@@ -236,6 +250,50 @@ export class ShoppingService {
     
     localStorage.clear();
     this.messageService.add({ severity: 'success', summary: 'Compra realizada', detail: 'Su compra a sido realizada exitosamente', life: 2000 });
+  }
+
+  /**
+   * Método para aplicar los filtros adicionales
+   */
+  applyFilters() {
+    if (!this.categorySelected && this.dispSelected == null && this.cantidadSelected == null && this.preciosSelected == null) {
+      this.products = this.productsAll;      
+    } else {
+      this.products = this.productsAll.filter(p => this.getPredicate(p));
+    }
+  }
+
+  /**
+   * Método para construir predicado dinamicamente segun los flitros que apliquen
+   * @param p El producto a validar con los filtros dados
+   */
+  getPredicate(p: Product): boolean{
+    let predicate: boolean = true;
+
+    if (this.categorySelected) {
+      predicate = predicate && p.sublevel_id == this.categorySelected.id;
+    }
+    if (this.dispSelected != null) {
+      predicate = predicate && p.available == this.dispSelected;
+    }
+    if (this.cantidadSelected != null) {
+      const cantSplit = this.cantidadSelected.split("-");
+      const min = +cantSplit[0];
+      const max = +cantSplit[1];
+      predicate = predicate && (p.quantity >= min && p.quantity <= max);
+    }
+    if (this.preciosSelected != null) {
+      const cantSplit = this.preciosSelected.split("-");
+      const min = +cantSplit[0];
+      const max = +cantSplit[1];
+        
+      const priceSplit = p.price.split("$");
+      const priceNum = priceSplit[1].replace(",", ".");
+      const priceProd = +priceNum;
+
+      predicate = predicate && (priceProd >= min && priceProd <= max);
+    }
+    return predicate;
   }
 
   /**

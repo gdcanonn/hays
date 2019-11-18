@@ -93,4 +93,12 @@ export class HomeComponent implements OnInit {
     this.shopping.seeCart = true;
   }
 
+  /**
+   * Método para ver todos los productos de la tienda
+   */
+  onSeeShop() {
+    this.shopping.seeCart = false;
+    this.shopping.seeAllProducts();
+  }
+
 }

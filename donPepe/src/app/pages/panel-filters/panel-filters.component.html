@@ -1,1 +1,31 @@
-<p>panel-filters works!</p>
+<p-panel header="Filtros" [toggleable]="false">
+    <div class="p-grid">
+        <div class="p-col-12 p-md-12" style="margin-top: 5px;">
+            <b>Disponibilidad: </b>
+        </div>
+        <div class="p-col-12 p-md-12">
+            <p-dropdown [options]="disponibilidadOptions" [(ngModel)]="dispSelected" (onChange)="onChangeFilter()">
+            </p-dropdown>
+        </div>
+    </div>
+
+    <div class="p-grid">
+        <div class="p-col-12 p-md-12" style="margin-top: 5px;">
+            <b>Cantidad en stock: </b>
+        </div>
+        <div class="p-col-12 p-md-12">
+            <p-dropdown [options]="cantidadOptions" [(ngModel)]="cantidadSelected" (onChange)="onChangeFilter()">
+            </p-dropdown>
+        </div>
+    </div>
+
+    <div class="p-grid">
+        <div class="p-col-12 p-md-12" style="margin-top: 5px;">
+            <b>Rango precios: </b>
+        </div>
+        <div class="p-col-12 p-md-12">
+            <p-dropdown [options]="preciosOptions" [(ngModel)]="preciosSelected" (onChange)="onChangeFilter()">
+            </p-dropdown>
+        </div>
+    </div>
+</p-panel>
