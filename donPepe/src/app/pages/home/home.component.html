@@ -1,0 +1,49 @@
+<div class="p-grid">
+
+    <!-- Mensajes de alerta -->
+    <p-toast position="top-right"></p-toast>
+
+    <!-- Header -->
+    <div class="p-col-12 header-st">
+        <div class="p-grid p-align-center vertical-container">
+
+            <div class="p-col-2 txt-cent menu-button">
+                <p-button icon="pi pi-align-justify" (click)="toggleMenu()"></p-button>
+            </div>
+
+            <div id="im-izq" class="p-col-2 p-md-2 txt-cent">
+                <img src="../../../assets/images/mi-tiendita.png" class="img-header" (click)="onSeeShop()"/>
+            </div>
+
+            <div class="p-col-5 p-md-6 txt-cent">
+                <p class="titulo">Tiendas ¡El Baratón!</p>
+            </div>
+
+            <div class="p-col-2 p-md-2 txt-cent">
+                <img src="../../../assets/images/mi-tiendita.png" class="img-header" (click)="onSeeShop()"/>
+            </div>
+
+            <div class="p-col-3 p-md-2 txt-cent cart-dv">
+                <img src="../../../assets/images/cart.png" class="img-cart" (click)="onSeeCart()" />
+                <span class="cart" (click)="onSeeCart()">{{ getQuantityProductsCart() }}</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Menu Izquierdo -->
+    <div class="p-col-12 p-md-3 menu-content" [@openCloseMenu]="shopping.menuActivo ? true : false">
+        <p-panelMenu [model]="shopping.items"></p-panelMenu>
+        <hr class="ui-widget-content" style="border-top:0">
+        <app-panel-filters></app-panel-filters>
+    </div>
+
+    <!-- Body - Productos de la tienda -->
+    <div class="p-col-12 p-md-9" *ngIf="!shopping.seeCart">
+        <app-panel-list-products></app-panel-list-products>
+    </div>
+
+    <!-- Body - Productos del Carrito -->
+    <div class="p-col-12 p-md-9" *ngIf="shopping.seeCart">
+        <app-panel-cart></app-panel-cart>
+    </div>
+</div>

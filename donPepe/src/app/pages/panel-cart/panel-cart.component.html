@@ -1,0 +1,46 @@
+<p-dataView #dcart [value]="shopping.productsCart" [layout]="'list'" [paginator]="true" [paginatorPosition]="'top'"
+    [rows]="3" [emptyMessage]="'No hay productos agregados al carrito'" filterBy="name">
+    <p-header>
+        <div class="ui-helper-clearfix">
+            <div class="ui-g">
+                <div class="ui-g-12 ui-md-12" style="padding-top: 12px;">
+                    Buscar por nombre: <input type="search" pInputText placeholder="Buscar.."
+                        (keyup)="dcart.filter($event.target.value)">
+                </div>
+            </div>
+        </div>
+    </p-header>
+    <ng-template let-prod pTemplate="listItem">
+        <div style="padding:.5em" class="ui-g-12 ui-md-3">
+            <p-panel [header]="prod.name" [style]="{'text-align':'center'}">
+                <img src="{{prod.pathImg}}" width="60">
+                <div style="color: red"><b>{{prod.price}}</b></div>
+                <div><b>Catidad a llevar: </b> <b style="color: green;">{{prod.quantity}}</b></div>
+
+                <hr class="ui-widget-content" style="border-top:0">
+                <button pButton type="button" icon="pi pi-pencil" style="margin-top: 0; margin-right: 10px;"
+                    pTooltip="'Editar producto'" (click)="prepareEdition()"></button>
+
+                <input pInputText name="nuevaCantidad" [(ngModel)]="nuevaCantidad" maxlength="3" pattern="[0-9]{1,4}" style="margin-top: 0; margin-right: 10px;" *ngIf="shopping.editarCantidad"/>
+                <button pButton icon="pi pi-check" (click)="editProduct(prod)" class="ui-button-success" style="margin-right: 5px;" *ngIf="shopping.editarCantidad"></button>
+                <button pButton icon="pi pi-times" (click)="cancelEdition()" class="ui-button-danger" *ngIf="shopping.editarCantidad"></button>
+
+                <button pButton type="button" icon="pi pi-trash" style="margin-top: 0" pTooltip="'Eliminar producto'"
+                    (click)="removeProduct(prod)" *ngIf="!shopping.editarCantidad"></button>
+            </p-panel>
+        </div>
+    </ng-template>
+</p-dataView>
+
+<br />
+<p-panel header="Consolidado" [toggleable]="false">
+    <div class="p-grid">
+        <div class="p-col-12 p-md-6" style="margin-top: 5px;">
+            <b>Total: </b> <b style="color: red">{{ shopping.getTotalCart() }}</b>
+        </div>
+        <div class="p-col-12 p-md-6" style="text-align: right;">
+            <button pButton type="button" label="Comprar" [disabled]="shopping.getTotalCart() === '$0'"
+                (click)="buyProducts()"></button>
+        </div>
+    </div>
+</p-panel>
