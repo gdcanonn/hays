@@ -4,7 +4,7 @@
 
 Nota: En el computador a revisar esta aplicación debe estar instalado el NodeJs, npm y angular Cli
 
-1. Descargar proyecto de GitHub https://github.com/gdcanonn/hays/tree/desarrollo-e-commerce
+1. Descargar proyecto de GitHub https://github.com/gdcanonn/hays
 2. Ubicarce en la carpeta 'donPepe' por consola linea de comandos (cmd)
 4. Ejecutar el siguiente comando 'npm install' -> Esto para instalar todas las dependencias
 5. Ejecutar el siguiente comando 'npm start' -> Esto para arrancar la aplicacion por http://localhost:4200/
@@ -23,9 +23,9 @@ Nota: En el computador a revisar esta aplicación debe estar instalado el NodeJs
 9. La aplicación es totalmente responsive. El menú cambia al estar en modo dispositivo movil. Aparecera en la parte superior izquierda un boton, el cual al darle click mostrará el menu de derecha hacia la izquierda con una pequeña animación.
 10. Se hace uso de LocalStorage para guardar la información en el navegador y así asl cerrar el navegador y volver a ingresar poder conservar el carrito de compras.
 
-# Estructura del codigo fuente
+# Estructura del código fuente
 
-1. Dtos para mapero de informacion -> Lo encontramos en 'src/app/business/data/'
+1. Dtos para mapero de información -> Lo encontramos en 'src/app/business/data/'
 2. Paginas o componentes utilizados -> Lo encontramos en 'src/app/pages/'
 3. Logica de negocio (TypeScript) -> Lo encontramos en 'src/app/services/'
 4. Recursos: Archivos JSON -> Lo encontramos en 'src/assets/bd/'
