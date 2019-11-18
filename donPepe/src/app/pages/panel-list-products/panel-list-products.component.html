@@ -1,0 +1,35 @@
+<p-dataView #dv [value]="shopping.products" [layout]="'grid'" [paginator]="true" [rows]="10"
+    [emptyMessage]="'No hay productos de esta categoría'" [sortField]="sortField" filterBy="name">
+    <p-header>
+        <div class="ui-helper-clearfix">
+            <div class="ui-g hd-prod">
+                <div class="ui-g-12 ui-md-3">
+                    <button pButton type="button" label="Ver todos los productos" (click)="seeAllProducts()">
+                    </button>
+                </div>
+                <div class="ui-g-12 ui-md-4">
+                    <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Ordenar por"
+                        (onChange)="onSortChange($event)" [style]="{'min-width':'140px'}"></p-dropdown>
+                </div>
+                <div class="ui-g-12 ui-md-5" style="padding-top: 12px;">
+                    Buscar por nombre: <input type="search" pInputText placeholder="Buscar.."
+                        (keyup)="dv.filter($event.target.value)">
+                </div>
+            </div>
+        </div>
+    </p-header>
+    <ng-template let-prod pTemplate="gridItem">
+        <div style="padding:.5em" class="ui-g-12 ui-md-3">
+            <p-panel [header]="prod.name" [style]="{'text-align':'center'}">
+                <img src="{{prod.pathImg}}" width="60">
+                <div style="color: red"><b>{{prod.price}}</b></div>
+                <div><b>Stock:</b> {{prod.quantity}}</div>
+                <div><b>Disponible:</b> {{prod.available == false ? 'No' : 'Si'}}</div>
+                
+                <hr class="ui-widget-content" style="border-top:0">
+                <button pButton type="button" icon="pi pi-shopping-cart" style="margin-top:0"
+                    pTooltip="'Agregar al carrito'" (click)="addToCart(prod)"></button>
+            </p-panel>
+        </div>
+    </ng-template>
+</p-dataView>

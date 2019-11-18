@@ -6,9 +6,19 @@
     margin: 5px;
 }
 
+.txt-cent {
+    text-align: center;
+}
+
 .img-header {
-    max-width: 100px;
-    max-height: 100px;
+    max-width: 80px;
+    max-height: 80px;
+}
+
+.img-cart {
+    max-width: 60px;
+    max-height: 60px;
+    cursor: pointer;
 }
 
 .header-st {
@@ -16,10 +26,24 @@
     border-bottom: 1px solid #8a391e73;
 }
 
+.cart {
+    color: white;
+    position: relative;
+    border-radius: 36px;
+    text-align: center;
+    left: -15px;
+    top: -45px;
+    font-size: 19px;
+    width: 35px;
+    display: inline-block;
+    background-color: green;
+    cursor: pointer;
+}
+
 /* ----------------------- Estilos de Menu ------------------------- */
 ::ng-deep body .ui-panelmenu .ui-panelmenu-header > a {
-    border: 1px solid #f15c2ab2;
-    background-color: #f15c2ab2;
+    border: 1px solid #f15c2ad0;
+    background-color: #f15c2ad0;
     color: black;
 }
 
@@ -55,10 +79,6 @@
     background-color: #f15c2ab2;
 }
 
-#im-izq {
-    margin-left: 40px;
-}
-
 .menu-button {
     display: none;
 }
@@ -67,6 +87,32 @@
     display: block;
     background: #8a391e73;
     height: 800px;
+}
+
+/** ---------------------- Estilos del DataView ----------------------- **/
+
+::ng-deep body .ui-dataview .ui-dataview-header {
+    background-color: #a1786d3a;
+}
+
+::ng-deep body .ui-dataview .ui-dataview-content {
+    background-color: #e6dedc2f;
+}
+
+::ng-deep body .ui-paginator {
+    background-color: #a1786d3a;
+}
+
+::ng-deep body .ui-panel .ui-panel-titlebar {
+    background-color: #a1786d3a;
+}
+
+::ng-deep body .ui-panel .ui-panel-content {
+    background-color: #8a83823a;
+}
+
+::ng-deep body .ui-paginator .ui-paginator-pages .ui-paginator-page.ui-state-active {
+    background-color: #f15c2ab2;
 }
 
 /**Media query para manejar el responsive del Menu */
@@ -83,11 +129,50 @@
         width: 80%;
         margin: 0px;
         position: fixed;
-        top: 125px;
+        top: 75px;
+        z-index: 2;
         left: -100%;
     }
 
+    .img-header {
+        max-width: 60px;
+        max-height: 60px;
+    }
+
+    .header-st {
+        height: 75px;
+    }
+
+    .hd-prod {
+        text-align: center;
+    }
+
     .titulo {
-        font-size: 2rem;
+        font-size: 17px;
+    }
+
+    .cart {
+        left: -10px;
+        top: -29px;
+        font-size: 19px;
+        width: 30px;
+    }
+    
+    .img-cart {
+        max-width: 40px;
+        max-height: 40px;
+    }
+
+    .cart-dv {
+        height: 60px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .cart {
+        left: 12px;
+        top: -50px;
+        font-size: 19px;
+        width: 30px;
     }
 }

@@ -1,19 +1,47 @@
-<div class="p-grid p-align-center">
+<div class="p-grid">
+
+    <!-- Mensajes de alerta -->
+    <p-toast position="top-right"></p-toast>
+
+    <!-- Header -->
     <div class="p-col-12 header-st">
         <div class="p-grid p-align-center vertical-container">
-            <p-button class="p-col-2 p-md-4 menu-button" icon="pi pi-align-justify" (click)="toggleMenu()"></p-button>
 
-            <img id="im-izq" src="../../../assets/images/mi-tiendita.png" class="p-col-2 p-md-2 img-header"/>
-            <p class="p-col-7 p-md-8 titulo">Tiendas ¡El Baratón!</p>
-            <img src="../../../assets/images/mi-tiendita.png" class="p-col-2 p-md-2 img-header"/>
+            <div class="p-col-2 txt-cent menu-button">
+                <p-button icon="pi pi-align-justify" (click)="toggleMenu()"></p-button>
+            </div>
+
+            <div id="im-izq" class="p-col-2 p-md-2 txt-cent">
+                <img src="../../../assets/images/mi-tiendita.png" class="img-header" />
+            </div>
+
+            <div class="p-col-5 p-md-6 txt-cent">
+                <p class="titulo">Tiendas ¡El Baratón!</p>
+            </div>
+
+            <div class="p-col-2 p-md-2 txt-cent">
+                <img src="../../../assets/images/mi-tiendita.png" class="img-header" />
+            </div>
+
+            <div class="p-col-3 p-md-2 txt-cent cart-dv">
+                <img src="../../../assets/images/cart.png" class="img-cart" (click)="onSeeCart()" />
+                <span class="cart" (click)="onSeeCart()">{{ getQuantityProductsCart() }}</span>
+            </div>
         </div>
     </div>
 
-    <div class="p-col-12 p-md-3 menu-content" [@openCloseMenu]="menuActivo ? true : false">
+    <!-- Menu Izquierdo -->
+    <div class="p-col-12 p-md-3 menu-content" [@openCloseMenu]="shopping.menuActivo ? true : false">
         <p-panelMenu [model]="shopping.items"></p-panelMenu>
     </div>
 
-    <div class="p-col-12 p-md-9">
+    <!-- Body - Productos de la tienda -->
+    <div class="p-col-12 p-md-9" *ngIf="!shopping.seeCart">
+        <app-panel-list-products></app-panel-list-products>
+    </div>
 
+    <!-- Body - Productos del Carrito -->
+    <div class="p-col-12 p-md-9" *ngIf="shopping.seeCart">
+        <app-panel-cart></app-panel-cart>
     </div>
 </div>

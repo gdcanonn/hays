@@ -16,6 +16,7 @@ export class Product {
     sublevel_id: number;
     name: string;
     id: string;
+    pathImg?: string;
 }
 
 /**
@@ -33,5 +34,6 @@ export class Category {
 export class Item {
     id?: number;
     label: string;
+    command?: (event?: any) => void;
     items?: Item[];
 }
